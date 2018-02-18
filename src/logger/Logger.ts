@@ -1,5 +1,5 @@
-import {LoggerOptions} from "./LoggerOptions";
-import {PlatformTools} from "../platform/PlatformTools";
+import { LoggerOptions } from "./LoggerOptions";
+import { PlatformTools } from "../platform/PlatformTools";
 
 /**
  * Performs logging of the events in TypeORM.
@@ -21,9 +21,9 @@ export class Logger {
      * Logs query and parameters used in it.
      */
     logQuery(query: string, parameters?: any[]) {
-        if (this.options.logQueries ||
-            PlatformTools.getEnvVariable("LOGGER_CLI_SCHEMA_SYNC"))
+        if (this.options.logQueries || PlatformTools.getEnvVariable("LOGGER_CLI_SCHEMA_SYNC")) {
             this.log("log", `executing query: ${query}${parameters && parameters.length ? " -- PARAMETERS: " + this.stringifyParams(parameters) : ""}`);
+        }
     }
 
     /**
@@ -58,7 +58,7 @@ export class Logger {
      * Perform logging using given logger, or by default to the console.
      * Log has its own level and message.
      */
-    log(level: "log"|"info"|"warn"|"error", message: any) {
+    log(level: "log" | "info" | "warn" | "error", message: any) {
         if (!this.options) return;
 
         if (this.options.logger) {
